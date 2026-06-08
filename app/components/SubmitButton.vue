@@ -1,6 +1,6 @@
 <template>
   <button
-    type="submit"
+    :type="type"
     :disabled="loading"
     class="w-full rounded-lg bg-blue-700 text-white mt-4 p-2 cursor-pointer hover:bg-blue-800 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
     :class="buttonClass"
