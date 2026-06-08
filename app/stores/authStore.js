@@ -4,7 +4,7 @@ export const useAuthStore = defineStore("authStore", () => {
   const user = ref(null);
   const token = useCookie("auth_token");
   const isAuthenticated = computed(() => {
-    return token.value === "mock_token_12312xSADSCSniaospdasdxsaaawerwq9r0wq";
+    return token.value === "mock_12312xSADSCSniaospdasdxsaaawerwq9r0wq";
   });
 
   const logIn = async (username, password) => {
