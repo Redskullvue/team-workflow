@@ -21,12 +21,7 @@
           :error="errors.password"
           placeholder="Enter your password"
         />
-        <SubmitButton
-          label="Log In"
-          type="submit"
-          :loading="isLoading"
-          :disabled="isLoading"
-        />
+        <SubmitButton label="Log In" type="submit" :loading="isLoading" />
       </form>
       <small class="text-red-500" v-show="errors.generalLoginError">{{
         errors.generalLoginError
@@ -72,6 +67,7 @@ const login = async () => {
 
   try {
     await authStore.logIn(username.value, password.value);
+    await navigateTo("/dashboard/main");
   } catch (error) {
     errors.value.generalLoginError = error.message;
   } finally {
