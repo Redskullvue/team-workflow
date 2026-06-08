@@ -37,6 +37,7 @@
 <script setup>
 definePageMeta({
   layout: "auth",
+  middleware: "guest",
 });
 const authStore = useAuthStore();
 const username = ref("");
