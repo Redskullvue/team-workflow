@@ -1,14 +1,23 @@
 export default defineEventHandler(async (event) => {
-  const { username, password } = await readBody(event);
-  if (!username.trim() || !password.trim()) {
+  const body = await readBody(event);
+  const username = body?.username?.trim();
+  const password = body?.password?.trim();
+  if (!username || !password) {
     throw createError({
       status: 400,
-      message: "Email & Password Are Required",
+      message: "Username & Password Are Required",
     });
   }
 
-  return {
-    success: true,
-    token: "12312xSADSCSniaospdasdxsaaawerwq9r0wq",
-  };
+  if (username !== "user1" || password !== "09102232378") {
+    throw createError({
+      statusCode: 401,
+      message: "Username or password are incorrect . Try again !",
+    });
+  } else {
+    return {
+      success: true,
+      token: "mock_12312xSADSCSniaospdasdxsaaawerwq9r0wq",
+    };
+  }
 });
