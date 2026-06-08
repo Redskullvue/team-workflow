@@ -28,7 +28,7 @@
       }}</small>
       <p class="mt-4 text-white">
         Don't have an account ?
-        <NuxtLink class="text-blue-900" to="/signup">Sign up</NuxtLink>
+        <NuxtLink class="text-blue-900" to="/auth/signup">Sign up</NuxtLink>
       </p>
     </AuthFormWrapper>
   </div>
