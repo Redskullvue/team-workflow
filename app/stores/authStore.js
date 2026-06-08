@@ -13,11 +13,10 @@ export const useAuthStore = defineStore("authStore", () => {
       });
       if (response.success) {
         token.value = response.token;
-      } else {
-        throw new Error("Something went wrong with the request");
       }
     } catch (error) {
-      throw new Error(error.message);
+      const msg = error?.data?.message || "Login failed. Please try again.";
+      throw new Error(msg);
     }
   };
 
