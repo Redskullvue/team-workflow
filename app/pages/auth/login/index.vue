@@ -34,18 +34,28 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 definePageMeta({
   layout: "auth",
   middleware: "guest",
 });
-const authStore = useAuthStore();
-const username = ref("");
-const password = ref("");
-const isLoading = ref(false);
-const errors = ref({ username: "", password: "", generalLoginError: "" });
+interface Errors {
+  username: string;
+  password: string;
+  generalLoginError: string;
+}
 
-const login = async () => {
+const authStore = useAuthStore();
+const username = ref<string>("");
+const password = ref<string>("");
+const isLoading = ref<boolean>(false);
+const errors = ref<Errors>({
+  username: "",
+  password: "",
+  generalLoginError: "",
+});
+
+const login = async (): Promise<void> => {
   // Reset Error values on each try
   errors.value.username = "";
   errors.value.password = "";
@@ -69,12 +79,10 @@ const login = async () => {
   try {
     await authStore.logIn(username.value, password.value);
     await navigateTo("/dashboard/main");
-  } catch (error) {
-    errors.value.generalLoginError = error.message;
+  } catch (error: unknown) {
+    errors.value.generalLoginError = (error as any)?.message;
   } finally {
     isLoading.value = false;
   }
 };
 </script>
-
-<style lang="scss" scoped></style>
