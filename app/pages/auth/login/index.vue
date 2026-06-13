@@ -23,7 +23,7 @@
         />
         <SubmitButton label="Log In" type="submit" :loading="isLoading" />
       </form>
-      <small class="text-red-500" v-show="errors.generalLoginError">{{
+      <small class="text-red-500" v-if="errors.generalLoginError">{{
         errors.generalLoginError
       }}</small>
       <p class="mt-4 text-white">
