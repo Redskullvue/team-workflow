@@ -23,6 +23,10 @@ export interface LoginResponse {
   user: User;
 }
 
+export interface MeResponse {
+  success: boolean;
+  user: User;
+}
 export interface SignupResponse {
   success: boolean;
   token: string;

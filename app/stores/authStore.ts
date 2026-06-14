@@ -1,5 +1,10 @@
 import { defineStore } from "pinia";
-import type { User, LoginResponse, SignupResponse } from "../../types/auth";
+import type {
+  User,
+  LoginResponse,
+  SignupResponse,
+  MeResponse,
+} from "#shared/types/auth";
 
 export const useAuthStore = defineStore("authStore", () => {
   const user = ref<User | null>(null);
@@ -46,11 +51,37 @@ export const useAuthStore = defineStore("authStore", () => {
     }
   };
 
+  const fetchUser = async (): Promise<void> => {
+    try {
+      const response = await $fetch<MeResponse>("/api/auth/me", {
+        method: "GET",
+        headers: {
+          Authorization: `${token.value}`,
+        },
+      });
+
+      if (response.success) {
+        user.value = response.user;
+      }
+    } catch (error: unknown) {
+      const msg =
+        (error as any)?.data?.message || "Failed to retrive user data";
+      throw new Error(msg);
+    }
+  };
+
+  const logout = async () => {
+    token.value = null;
+    user.value = null;
+    await navigateTo("/auth/login");
+  };
   return {
     user,
     token,
     isAuthenticated,
     logIn,
     signup,
+    fetchUser,
+    logout,
   };
 });

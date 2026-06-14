@@ -1,4 +1,4 @@
-import type { User, SignupBody, SignupResponse } from "../../../types/auth";
+import type { User, SignupBody, SignupResponse } from "#shared/types/auth";
 export default defineEventHandler(async (event): Promise<SignupResponse> => {
   const config = useRuntimeConfig();
   const body = await readBody<SignupBody>(event);
