@@ -1,5 +1,9 @@
 <template>
-  <div>Dashboard View</div>
+  <div class="w-full h-screen p-3">Dashboard View</div>
 </template>
 
-<script setup></script>
+<script setup>
+definePageMeta({
+  layout: "dashboard",
+});
+</script>
