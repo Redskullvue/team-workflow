@@ -1,20 +1,4 @@
-interface User {
-  name: string;
-  username: string;
-  email: string;
-  avatarImage: string;
-}
-interface SignupBody {
-  username: string;
-  password: string;
-  email: string;
-}
-interface SignupResponse {
-  success: boolean;
-  token: string;
-  user: User;
-}
-
+import type { User, SignupBody, SignupResponse } from "../../../types/auth";
 export default defineEventHandler(async (event): Promise<SignupResponse> => {
   const config = useRuntimeConfig();
   const body = await readBody<SignupBody>(event);
@@ -33,6 +17,7 @@ export default defineEventHandler(async (event): Promise<SignupResponse> => {
     success: true,
     token: config.mockToken,
     user: {
+      id: "1",
       name: "Alex Morgan",
       username: "alexmorgan021",
       email: "alexmorgan@gmail.com",

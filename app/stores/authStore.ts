@@ -1,20 +1,5 @@
 import { defineStore } from "pinia";
-
-interface User {
-  id: string;
-  username: string;
-  email: string;
-}
-
-interface LoginResponse {
-  success: boolean;
-  token: string;
-}
-
-interface SignupResponse {
-  success: boolean;
-  token: string;
-}
+import type { User, LoginResponse, SignupResponse } from "../../types/auth";
 
 export const useAuthStore = defineStore("authStore", () => {
   const user = ref<User | null>(null);
