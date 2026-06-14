@@ -21,7 +21,7 @@
       @click="close"
     />
     <aside
-      class="lg:w-1/6 bg-white border-r border-gray-200 h-screen p-3 lg:block lg:translate-x-0 w-64 z-30 transition-transform duration-300 lg:static fixed"
+      class="xl:w-1/6 lg:w-1/5 bg-white border-r border-gray-200 h-screen p-3 lg:block lg:translate-x-0 w-64 z-30 transition-transform duration-300 lg:static fixed"
       :class="isOpen ? 'translate-x-0' : '-translate-x-full'"
     >
       <dashboard-side-bar />

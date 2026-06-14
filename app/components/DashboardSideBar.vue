@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full">
+  <div class="w-full h-full overflow-hidden">
     <!-- Sidebar Headaer -->
     <h2 class="font-bold border-b-2 border-gray-200 p-5">
       TaskFlow <span class="text-blue-500 text-sm">Dashboard</span>
@@ -26,7 +26,7 @@
       </div>
     </div>
     <div
-      class="w-full h-[39%] border-t-2 border-gray-200 p-5 flex flex-col gap-y-4"
+      class="w-full h-[39%] max-h[39%] border-t-2 border-gray-200 p-5 flex flex-col gap-y-4 xl:flex xl:justify-end"
     >
       <NuxtLink
         to="/dashboard/notifications"
