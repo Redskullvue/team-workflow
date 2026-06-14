@@ -16,6 +16,7 @@ export const useAuthStore = defineStore("authStore", () => {
       });
       if (response.success) {
         token.value = response.token;
+        user.value = response.user;
       }
     } catch (error: unknown) {
       const msg =
@@ -36,6 +37,7 @@ export const useAuthStore = defineStore("authStore", () => {
       });
       if (response.success) {
         token.value = response.token;
+        user.value = response.user;
       }
     } catch (error: unknown) {
       const msg =
