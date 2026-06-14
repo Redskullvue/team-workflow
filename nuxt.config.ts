@@ -16,7 +16,7 @@ export default defineNuxtConfig({
   },
 
   css: ["~/assets/css/main.css"],
-  modules: ["@pinia/nuxt"],
+  modules: ["@pinia/nuxt", "@nuxt/icon"],
 
   runtimeConfig: {
     username: "",
