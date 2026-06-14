@@ -1,6 +1,14 @@
+interface User {
+  name: string;
+  username: string;
+  email: string;
+  avatarImage: string;
+}
+
 interface LoginResponse {
   success: boolean;
   token: string;
+  user: User;
 }
 
 interface LoginBody {
@@ -29,6 +37,12 @@ export default defineEventHandler(async (event): Promise<LoginResponse> => {
     return {
       success: true,
       token: config.mockToken,
+      user: {
+        name: "Alex Morgan",
+        username: "alexmorgan021",
+        email: "alexmorgan@gmail.com",
+        avatarImage: "",
+      },
     };
   }
 });
