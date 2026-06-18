@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full h-screen max-h-screen bg-white flex flex-col lg:flex-row">
+  <div
+    class="w-full h-screen max-h-screen bg-gray-50 flex flex-col lg:flex-row"
+  >
     <!-- Header only on mobile version -->
     <header
       class="w-full p-3 lg:hidden border-b-2 border-gray-200 shadow-sm shadow-gray-300 flex items-center justify-between"
