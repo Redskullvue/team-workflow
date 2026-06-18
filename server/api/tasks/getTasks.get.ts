@@ -18,7 +18,7 @@ export default defineEventHandler(async (event): Promise<TasksResponse> => {
       id: "2",
       status: "in-progress",
       title: "Create SideBar",
-      priority: "mid",
+      priority: "medium",
       description: "Create the dashboard SideBar",
       createdAt: new Date().toISOString(),
       assignedTo: "",
