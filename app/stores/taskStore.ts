@@ -18,7 +18,7 @@ export const useTaskStore = defineStore("taskStore", () => {
     low: tasks.value.filter((task) => task.priority === "low").length,
   }));
 
-  const getTasks = async (): Promise<void> => {
+  const getTasks = async (): Promise<Task[]> => {
     try {
       const response = await $fetch<TasksResponse>("/api/tasks/getTasks", {
         method: "GET",
@@ -30,6 +30,8 @@ export const useTaskStore = defineStore("taskStore", () => {
       if (response.success) {
         tasks.value = response.tasks;
       }
+
+      return response.tasks;
     } catch (error: unknown) {
       const msg =
         (error as any)?.data?.message ||
