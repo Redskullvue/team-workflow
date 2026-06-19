@@ -21,7 +21,7 @@
         <AppNewTaskButton />
         <button
           @click="() => refresh()"
-          class="bg-blue-500 text-white rounded-xl w-15 h-10 flex items-center justify-center"
+          class="bg-blue-500 text-white rounded-xl w-15 h-10 flex items-center justify-center cursor-pointer transition-colors duration-300 hover:bg-blue-600"
         >
           <Icon name="ic:baseline-refresh" size="20px" />
         </button>
