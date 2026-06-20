@@ -32,6 +32,24 @@ export default defineEventHandler(async (event): Promise<TasksResponse> => {
       createdAt: new Date().toISOString(),
       assignedTo: "",
     },
+    {
+      id: "4",
+      status: "in-progress",
+      title: "Create A Dashboard Page",
+      priority: "high",
+      description: "Create the main dashboard page using nuxt4 TYPED",
+      createdAt: new Date().toISOString(),
+      assignedTo: "",
+    },
+    {
+      id: "5",
+      status: "todo",
+      title: "Create A Dashboard Page",
+      priority: "high",
+      description: "Create the main dashboard page using nuxt4 TYPED",
+      createdAt: new Date().toISOString(),
+      assignedTo: "",
+    },
   ];
 
   return {
