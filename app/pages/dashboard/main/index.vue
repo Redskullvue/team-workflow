@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full min-h-screen p-3">
+  <div class="w-full min-h-screen p-3 overflow-y-scroll">
     <div class="w-full p-4 flex items-center justify-between mb-10">
       <div class="w-full">
         <h1 class="font-bold text-lg mb-2">
@@ -58,6 +58,27 @@
         icon-container-class="bg-green-200 text-green-600"
         :is-loading="pending"
       />
+    </div>
+
+    <!-- Progress & Recent tasks section -->
+    <div class="w-full grid grid-cols-5 gap-8 my-10">
+      <div
+        class="col-span-5 lg:col-span-3 bg-white rounded-xl border border-gray-200 p-3 h-full flex flex-col items-center gap-y-4"
+      >
+        <div class="w-full p-4 flex items-center justify-between">
+          <h2 class="font-bold">Recent Tasks</h2>
+          <NuxtLink class="text-blue-500 font-bold text-sm cursor-pointer"
+            >View All</NuxtLink
+          >
+        </div>
+        <template v-if="taskStore.tasks.length > 0">
+          <TaskCard
+            v-for="task in taskStore.tasks"
+            :key="task.id"
+            :task="task"
+          />
+        </template>
+      </div>
     </div>
   </div>
 </template>
