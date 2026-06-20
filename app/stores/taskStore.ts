@@ -18,6 +18,17 @@ export const useTaskStore = defineStore("taskStore", () => {
     low: tasks.value.filter((task) => task.priority === "low").length,
   }));
 
+  const tasksPercentages = computed(() => {
+    let total = tasks.value.length;
+    if (total === 0) return { todo: 0, inProgress: 0, done: 0 };
+
+    return {
+      todo: Math.round((taskCounts.value.todo / total) * 100),
+      inProgress: Math.round((taskCounts.value.inProgress / total) * 100),
+      done: Math.round((taskCounts.value.done / total) * 100),
+    };
+  });
+
   const getTasks = async (): Promise<Task[]> => {
     try {
       const response = await $fetch<TasksResponse>("/api/tasks/getTasks", {
@@ -44,6 +55,7 @@ export const useTaskStore = defineStore("taskStore", () => {
     tasks,
     taskPriorityCount,
     taskCounts,
+    tasksPercentages,
     getTasks,
   };
 });
