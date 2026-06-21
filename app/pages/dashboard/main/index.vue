@@ -85,7 +85,7 @@
         class="col-span-5 lg:col-span-2 flex items-center justify-center flex-col h-full gap-y-3"
       >
         <div
-          class="w-10/12 bg-white rounded-xl p-4 h-1/2 border border-gray-200 min-h-60"
+          class="lg:w-10/12 w-full bg-white rounded-xl p-4 h-1/2 border border-gray-200 min-h-60"
         >
           <h2 class="font-bold my-3">Task Progress</h2>
           <DashboardProgressBar
@@ -105,7 +105,7 @@
           />
         </div>
         <div
-          class="w-10/12 bg-white rounded-xl px-4 py-3 min-h-75 border border-gray-200 flex flex-col gap-3"
+          class="lg:w-10/12 w-full bg-white rounded-xl px-4 py-3 min-h-75 border border-gray-200 flex flex-col gap-3"
         >
           <h2 class="font-bold my-3">Team members</h2>
           <TeamMemberCard
