@@ -1,5 +1,6 @@
 <template>
   <NuxtLink
+    to="/dashboard/create"
     class="w-full bg-blue-500 rounded-xl text-white flex items-center justify-center px-3 py-2 gap-x-1 cursor-pointer transition-colors duration-300 hover:bg-blue-600"
   >
     New Task
