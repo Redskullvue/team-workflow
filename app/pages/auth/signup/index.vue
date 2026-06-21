@@ -3,7 +3,7 @@
     <AuthFormWrapper>
       <h2 class="font-bold text-lg text-white mb-5">Sign Up</h2>
       <form @submit.prevent="signup" class="w-full">
-        <AuthInput
+        <AppInput
           id="username"
           type="text"
           placeholder="Enter your username"
@@ -13,7 +13,7 @@
           :error="errors.username"
         />
 
-        <AuthInput
+        <AppInput
           id="email"
           type="email"
           placeholder="Enter your Email"
@@ -23,7 +23,7 @@
           :error="errors.email"
         />
 
-        <AuthInput
+        <AppInput
           id="password"
           type="password"
           placeholder="Enter your password"
