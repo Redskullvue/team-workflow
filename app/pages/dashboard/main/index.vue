@@ -67,7 +67,9 @@
       >
         <div class="w-full p-4 flex items-center justify-between">
           <h2 class="font-bold">Recent Tasks</h2>
-          <NuxtLink class="text-blue-500 font-bold text-sm cursor-pointer"
+          <NuxtLink
+            to="/dashboard/tasks"
+            class="text-blue-500 font-bold text-sm cursor-pointer"
             >View All</NuxtLink
           >
         </div>
@@ -106,10 +108,12 @@
           class="w-10/12 bg-white rounded-xl px-4 py-3 min-h-75 border border-gray-200 flex flex-col gap-3"
         >
           <h2 class="font-bold my-3">Team members</h2>
-          <UserProfile class="mb-2" />
-          <UserProfile class="mb-2" />
-          <UserProfile class="mb-2" />
-          <UserProfile class="mb-2" />
+          <TeamMemberCard
+            v-for="member in teamData?.members"
+            class="my-1"
+            :key="member.id"
+            :member="member"
+          />
         </div>
       </div>
     </div>
@@ -117,15 +121,24 @@
 </template>
 
 <script setup lang="ts">
+import type { TeamResponse } from "~~/shared/types/team";
 definePageMeta({
   layout: "dashboard",
 });
 const authStore = useAuthStore();
 const taskStore = useTaskStore();
+// const teamMembers = ref([]);
 
 // The Data is not used for SEO purposes but for better performance useAsyncData is my best choice to retrive data on server
 // and show the user (Free loading State and refresh button are perks)
 const { pending, refresh } = await useAsyncData("tasks", () =>
   taskStore.getTasks(),
 );
+
+const { data: teamData } = await useFetch<TeamResponse>("/api/team/members", {
+  method: "GET",
+  headers: {
+    Authorization: `${authStore.token}`,
+  },
+});
 </script>
