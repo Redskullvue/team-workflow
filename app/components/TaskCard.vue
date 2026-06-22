@@ -11,7 +11,10 @@
     </div>
     <!-- Title & SubTitle -->
     <div class="w-full">
-      <p class="font-semibold">
+      <p
+        class="font-semibold"
+        :class="task.status === 'done' ? ' line-through text-gray-600' : ''"
+      >
         {{ task.title.substring(0.3) }}
         <span v-if="task.title.length >= 30">...</span>
       </p>
