@@ -13,7 +13,7 @@
           :error="errors.username"
         />
 
-        <AppInput
+        <AuthInput
           id="email"
           type="email"
           placeholder="Enter your Email"
@@ -23,7 +23,7 @@
           :error="errors.email"
         />
 
-        <AppInput
+        <AuthInput
           id="password"
           type="password"
           placeholder="Enter your password"

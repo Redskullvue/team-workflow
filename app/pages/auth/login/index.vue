@@ -3,7 +3,7 @@
     <AuthFormWrapper>
       <h2 class="font-bold text-lg text-white mb-5">Log In</h2>
       <form class="w-full" @submit.prevent="login">
-        <AppInput
+        <AuthInput
           v-model="username"
           label="Username"
           type="text"
@@ -12,7 +12,7 @@
           :error="errors.username"
           placeholder="Enter your username"
         />
-        <AppInput
+        <AuthInput
           v-model="password"
           label="Password"
           type="password"
