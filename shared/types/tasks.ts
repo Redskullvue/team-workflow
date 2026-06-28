@@ -15,6 +15,7 @@ export interface TasksResponse {
 }
 
 export interface TaskCreateBody {
+  id: string;
   title: string;
   description?: string;
   status: "done" | "in-progress" | "todo";
@@ -26,4 +27,5 @@ export interface TaskCreateBody {
 
 export interface TaskCreateResponse {
   success: boolean;
+  tasks: Task[];
 }

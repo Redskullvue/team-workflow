@@ -1,5 +1,9 @@
 import { defineStore } from "pinia";
-import type { TasksResponse, Task } from "#shared/types/tasks";
+import type {
+  TasksResponse,
+  Task,
+  TaskCreateResponse,
+} from "#shared/types/tasks";
 
 export const useTaskStore = defineStore("taskStore", () => {
   const authStore = useAuthStore();
@@ -51,11 +55,48 @@ export const useTaskStore = defineStore("taskStore", () => {
     }
   };
 
+  const createTask = async (
+    title: string,
+    description: string,
+    date: string,
+    priority: Task["priority"],
+    status: Task["status"],
+    assigne?: string,
+  ): Promise<void> => {
+    try {
+      const response = await $fetch<TaskCreateResponse>("/api/tasks/create", {
+        method: "POST",
+        body: {
+          title,
+          description,
+          date,
+          priority,
+          status,
+          assigne,
+        },
+        headers: {
+          Authorization: `${authStore.token}`,
+        },
+      });
+      if (response.success) {
+        tasks.value = response.tasks;
+      } else {
+        return;
+      }
+    } catch (error: unknown) {
+      const msg =
+        (error as any)?.data?.message ||
+        "Couldn't Create the Task Please Try Again Later";
+      throw new Error(msg);
+    }
+  };
+
   return {
     tasks,
     taskPriorityCount,
     taskCounts,
     tasksPercentages,
     getTasks,
+    createTask,
   };
 });
