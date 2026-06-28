@@ -73,13 +73,19 @@
             >View All</NuxtLink
           >
         </div>
-        <template v-if="taskStore.tasks.length > 0">
+        <template v-if="taskStore.recentTasks.length > 0">
           <TaskCard
-            v-for="task in taskStore.tasks"
+            v-for="task in taskStore.recentTasks"
             :key="task.id"
             :task="task"
           />
         </template>
+        <h2 class="text-gray-600 font-semibold" v-else>
+          Congragulations You Have No Tasks To Do !
+          <NuxtLink to="/dashboard/create" class="text-blue-400"
+            >Create one</NuxtLink
+          >
+        </h2>
       </div>
       <div
         class="col-span-5 lg:col-span-2 flex items-center justify-center flex-col h-full gap-y-3"

@@ -33,6 +33,15 @@ export const useTaskStore = defineStore("taskStore", () => {
     };
   });
 
+  const recentTasks = computed(() => {
+    return [...tasks.value]
+      .sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+      )
+      .slice(0, 6);
+  });
+
   const getTasks = async (): Promise<Task[]> => {
     try {
       const response = await $fetch<TasksResponse>("/api/tasks/getTasks", {
@@ -96,6 +105,7 @@ export const useTaskStore = defineStore("taskStore", () => {
     taskPriorityCount,
     taskCounts,
     tasksPercentages,
+    recentTasks,
     getTasks,
     createTask,
   };
