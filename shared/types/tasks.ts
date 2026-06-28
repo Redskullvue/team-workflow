@@ -15,12 +15,10 @@ export interface TasksResponse {
 }
 
 export interface TaskCreateBody {
-  id: string;
   title: string;
   description?: string;
   status: "done" | "in-progress" | "todo";
   priority: "high" | "medium" | "low";
-  createdAt: string;
   finishedAt?: string;
   assignedTo?: string;
 }

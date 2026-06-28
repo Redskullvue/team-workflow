@@ -1,5 +1,9 @@
 import { requireAuth } from "~~/server/utils/checkAuth";
-import type { TaskCreateResponse, TaskCreateBody } from "~~/shared/types/tasks";
+import type {
+  TaskCreateResponse,
+  TaskCreateBody,
+  Task,
+} from "~~/shared/types/tasks";
 import { allTasks } from "~~/server/utils/allTasks";
 export default defineEventHandler(
   async (event): Promise<TaskCreateResponse> => {
@@ -12,7 +16,7 @@ export default defineEventHandler(
         message: "Invalid Request , Fill the Required Fields",
       });
     }
-    const task: TaskCreateBody = {
+    const task: Task = {
       id: Date.now().toString(),
       title: body.title,
       description: body.description,
