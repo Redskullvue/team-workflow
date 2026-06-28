@@ -124,7 +124,7 @@ const statusValue = ref<Task["status"]>("todo");
 const projectValue = ref("");
 const dueDateValue = ref("");
 const priorityValue = ref<Task["priority"]>("low");
-const errors = ref({ title: "", status: "", priority: "" });
+const errors = ref({ title: "", status: "", priority: "", generalError: "" });
 const priorityOptions = [
   { value: "high", label: "High" },
   { value: "medium", label: "Medium" },
@@ -141,7 +141,7 @@ const options = [
 ];
 
 const createTaskSubmit = async () => {
-  errors.value = { title: "", status: "", priority: "" };
+  errors.value = { title: "", status: "", priority: "", generalError: "" };
   let hasError = false;
 
   if (!taskTitle.value.trim()) {
@@ -159,16 +159,22 @@ const createTaskSubmit = async () => {
   }
 
   if (hasError) return;
-  await taskStore.createTask(
-    taskTitle.value,
-    taskDescription.value,
-    dueDateValue.value,
-    priorityValue.value,
-    statusValue.value,
-    assigneValue.value,
-  );
+  try {
+    await taskStore.createTask(
+      taskTitle.value,
+      taskDescription.value,
+      dueDateValue.value,
+      priorityValue.value,
+      statusValue.value,
+      assigneValue.value,
+    );
+    clearForm();
+    await navigateTo("/dashboard/main");
+  } catch (error: unknown) {
+    errors.value.generalError =
+      (error as any)?.message || "Failed to Create Task Please Try Again Later";
+  }
   clearForm();
-  await navigateTo("/dashboard/main");
 };
 
 const clearForm = () => {
