@@ -29,7 +29,9 @@
       <AppPriorityTag :priority="task.priority" />
     </div>
     <!-- Date -->
-    <div class="w-full">{{ formatDate(task.createdAt) }}</div>
+    <div class="w-full text-center">
+      {{ formatDate(task.createdAt) }}
+    </div>
   </div>
 </template>
 
