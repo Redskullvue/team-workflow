@@ -67,10 +67,10 @@ export const useTaskStore = defineStore("taskStore", () => {
   const createTask = async (
     title: string,
     description: string,
-    date: string,
     priority: Task["priority"],
     status: Task["status"],
     assigne?: string,
+    finishedAt?: string,
   ): Promise<void> => {
     try {
       const response = await $fetch<TaskCreateResponse>("/api/tasks/create", {
@@ -78,7 +78,7 @@ export const useTaskStore = defineStore("taskStore", () => {
         body: {
           title,
           description,
-          date,
+          finishedAt,
           priority,
           status,
           assigne,

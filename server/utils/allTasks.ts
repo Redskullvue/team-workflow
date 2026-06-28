@@ -43,6 +43,7 @@ export const allTasks: Task[] = [
     priority: "high",
     description: "Create the main dashboard page using nuxt4 TYPED",
     createdAt: new Date().toISOString(),
+    finishedAt: new Date().toISOString(),
     assignedTo: "",
   },
 ];

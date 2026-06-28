@@ -24,6 +24,7 @@ export default defineEventHandler(
       assignedTo: "",
       priority: body.priority,
       status: body.status,
+      finishedAt: body.finishedAt || "",
     };
     allTasks.push(task);
     return {

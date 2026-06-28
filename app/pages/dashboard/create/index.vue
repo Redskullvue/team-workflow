@@ -107,6 +107,9 @@
           <SubmitButton type="submit" label="Create" class="max-w-40" />
         </div>
       </form>
+      <small v-if="errors.generalError" class="text-red-500">{{
+        errors.generalError
+      }}</small>
     </div>
   </div>
 </template>
@@ -163,10 +166,10 @@ const createTaskSubmit = async () => {
     await taskStore.createTask(
       taskTitle.value,
       taskDescription.value,
-      dueDateValue.value,
       priorityValue.value,
       statusValue.value,
       assigneValue.value,
+      dueDateValue.value,
     );
     clearForm();
     await navigateTo("/dashboard/main");
