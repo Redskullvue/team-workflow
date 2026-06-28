@@ -89,8 +89,6 @@ export const useTaskStore = defineStore("taskStore", () => {
       });
       if (response.success) {
         tasks.value = response.tasks;
-      } else {
-        return;
       }
     } catch (error: unknown) {
       const msg =
