@@ -114,12 +114,15 @@
           class="lg:w-10/12 w-full bg-white rounded-xl px-4 py-3 min-h-75 border border-gray-200 flex flex-col gap-3"
         >
           <h2 class="font-bold my-3">Team members</h2>
-          <TeamMemberCard
-            v-for="member in teamData?.members"
-            class="my-1"
-            :key="member.id"
-            :member="member"
-          />
+          <template v-if="!teamPending">
+            <TeamMemberCard
+              v-for="member in teamStore.teamMembers"
+              class="my-1"
+              :key="member.id"
+              :member="member"
+            />
+          </template>
+          <p v-else>Loading ...</p>
         </div>
       </div>
     </div>
@@ -127,12 +130,12 @@
 </template>
 
 <script setup lang="ts">
-import type { TeamResponse } from "~~/shared/types/team";
 definePageMeta({
   layout: "dashboard",
 });
 const authStore = useAuthStore();
 const taskStore = useTaskStore();
+const teamStore = useTeamStore();
 // const teamMembers = ref([]);
 
 // The Data is not used for SEO purposes but for better performance useAsyncData is my best choice to retrive data on server
@@ -141,10 +144,7 @@ const { pending, refresh } = await useAsyncData("tasks", () =>
   taskStore.getTasks(),
 );
 
-const { data: teamData } = await useFetch<TeamResponse>("/api/team/members", {
-  method: "GET",
-  headers: {
-    Authorization: `${authStore.token}`,
-  },
-});
+const { pending: teamPending } = await useAsyncData("team", () =>
+  teamStore.getTeamMembers(),
+);
 </script>
